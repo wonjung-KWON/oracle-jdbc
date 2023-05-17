@@ -28,14 +28,14 @@
 		nvi 함수를 쓰는 쿼리
 		select 이름, nvl(일분기, 0) from 실적;
 	*/
-	nvlSql = "select 이름, nvl(일분기, 0) as 분기 from 실적";
+	nvlSql = "select 이름, nvl(일분기, 0) 분기 from 실적";
 	nvlStmt = conn.prepareStatement(nvlSql);
 	nvlRs = nvlStmt.executeQuery();
 	/*
 		nvi2 함수를 쓰는 쿼리
 		select 이름, nvl2(일분기, 'success', 'fail') from 실적;
 	*/
-	nvl2Sql = "select 이름, nvl2(일분기, 'success', 'fail')as 분기 from 실적";
+	nvl2Sql = "select 이름, nvl2(일분기, 'success', 'fail') 분기 from 실적";
 	nvl2Stmt = conn.prepareStatement(nvl2Sql);
 	nvl2Rs = nvl2Stmt.executeQuery();
 	
@@ -43,7 +43,7 @@
 		nullif 함수를 쓰는 쿼리
 		select 이름, nullif(사분기, 100) from 실적;
 	*/
-	nullifSql = "select 이름, nullif(사분기, 100)as 분기 from 실적";
+	nullifSql = "select 이름, nullif(사분기, 100) 분기 from 실적";
 	nullifStmt = conn.prepareStatement(nullifSql);
 	nullifRs = nullifStmt.executeQuery();
 	
@@ -51,7 +51,7 @@
 		coalesce 함수를 쓰는 쿼리
 		select 이름, coalesce(일분기, 이분기, 삼분기, 사분기) from 실적;
 	*/
-	coalesceSql = "select 이름, coalesce(일분기, 이분기, 삼분기, 사분기) as 분기 from 실적";
+	coalesceSql = "select 이름, coalesce(일분기, 이분기, 삼분기, 사분기) 분기 from 실적";
 	coalesceStmt = conn.prepareStatement(coalesceSql);
 	coalesceRs = coalesceStmt.executeQuery();
 
@@ -77,7 +77,7 @@
 		while(nullifRs.next()){
 			HashMap<String, Object> nif = new HashMap<String, Object>();
 			nif.put("이름", nullifRs.getString("이름"));
-			nif.put("분기", nullifRs.getInt("분기"));
+			nif.put("분기", nullifRs.getString("분기"));
 			nullifList.add(nif);
 		}
 		System.out.println(nullifList);
@@ -148,7 +148,7 @@
 				%>
 					<tr class="table-info">
 						<td><%=(String)(nif.get("이름"))%></td>
-						<td><%=(Integer)(nif.get("분기"))%></td>
+						<td><%=(String)(nif.get("분기"))%></td>
 					</tr>
 				<% 
 					}
