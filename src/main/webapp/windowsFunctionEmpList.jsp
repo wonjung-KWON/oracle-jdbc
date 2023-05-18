@@ -2,6 +2,7 @@
 <%@ page import = "java.sql.*" %>
 <%@ page import = "java.util.*" %>
 <%
+	//현재페이지
 	int currentPage = 1;
 	if(request.getParameter("currentPage") != null){
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
